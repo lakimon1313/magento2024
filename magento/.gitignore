@@ -1,0 +1,14 @@
+/app/etc/env.php
+/app/etc/config.php
+/vendor/*
+!/vendor/.htaccess
+/pub/media/*
+!/pub/media/.htaccess
+/pub/static/*
+!/pub/static/.htaccess
+/var/*
+!/var/.htaccess
+!/var/.maintenance.flag
+!/var/resource_config.json
+/generated/*
+!/generated/.htacce

@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  magento2:
+    build: .
+    volumes:
+      - ./magento:/var/www/html
+    ports:
+      - '8000:80'
+    depends_on:
+      - db
+      - elasticsearch
+      - rabbitmq
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: magento
+      MYSQL_USER: magento
+      MYSQL_PASSWORD: magento
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - '3606:3306'
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    ports:
+      - '9200:9200'
+
+  rabbitmq:
+    image: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+
+volumes:
+  mysql-data:
+  elasticsearch-data:

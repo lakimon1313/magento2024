@@ -1,0 +1,7 @@
+.git
+node_modules
+docker-compose.yml
+README.md
+.idea
+*.log
+*.swp
